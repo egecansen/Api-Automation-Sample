@@ -10,6 +10,10 @@ public class Pet {
     List<DataModel> tags;
     String status;
 
+    public Pet(String petName) {
+        this.name = petName;
+    }
+
 
     public Long getId() {
         return id;

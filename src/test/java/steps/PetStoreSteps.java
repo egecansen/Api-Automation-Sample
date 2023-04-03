@@ -115,7 +115,7 @@ public class PetStoreSteps {
         petStore.log.new Success("Pet successfully updated");
     }
 
-    @Given("Upload a photo for id numbered {} pet, metadata: {}, file url: {}")
+    @Given("Upload a photo for id numbered {} pet, metadata: {}, file path: {}")
     public void uploadPhoto(long petId, String metaData, String filePath) {
         petStore.uploadPetPhoto(petId, petUtilities.createPartFromString(metaData), petUtilities.getMultipartBody(new File(filePath)));
         petStore.log.new Success("Photo successfully uploaded");
