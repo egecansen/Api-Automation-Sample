@@ -22,7 +22,7 @@ public class PetStore extends ApiUtilities {
     }
 
     public Response<Pet> postPet(Pet pet) {
-        log.new Info("Posting a new pet named: " + pet.getName());
+        log.new Info("Posting a new pet");
         Call<Pet> newPetCall = petStore.postPet(pet);
         return getResponse(newPetCall, true, true);
     }

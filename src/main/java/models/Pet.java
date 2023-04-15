@@ -14,6 +14,8 @@ public class Pet {
         this.name = petName;
     }
 
+    public Pet() {}
+
 
     public Long getId() {
         return id;

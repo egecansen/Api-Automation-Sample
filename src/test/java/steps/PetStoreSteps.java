@@ -2,6 +2,7 @@ package steps;
 
 import common.PetUtilities;
 import context.ContextStore;
+import gpt.api.GPT;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import models.*;
@@ -9,6 +10,7 @@ import models.SimpleResponse;
 import org.junit.Assert;
 import petstore.PetStore;
 import retrofit2.Response;
+import utils.ReflectionUtilities;
 import utils.StringUtilities;
 
 import java.io.File;
@@ -61,6 +63,14 @@ public class PetStoreSteps {
         petStore.log.new Success("Names match!");
         Assert.assertNotNull("The Id is null!", pet.getId());
         petStore.log.new Success("New petResponse id is " + pet.getId());
+    }
+
+ @Given("Generate a random GPT pet")
+    public void postGPTPet() {
+        Pet newPet = petUtilities.getRandomPet();
+        Response<Pet> petResponse = petStore.postPet(newPet);
+        ReflectionUtilities reflectionUtilities = new ReflectionUtilities();
+        reflectionUtilities.compareObjects(newPet, petResponse.body(), "id");
     }
 
     @Given("Randomly update the pet named: {}")
@@ -150,6 +160,14 @@ public class PetStoreSteps {
         user.setPhone(userMap.get("Phone Number"));
         user.setUserStatus(Integer.parseInt(userMap.get("userStatus")));
         petStore.createUser(user);
+
+        ContextStore.put("contextUser", user);
+        petStore.log.new Success("User successfully created");
+    }
+
+    @Given("Generate random GPT user")
+    public void createGPTUser() {
+        User user = petUtilities.getRandomUser();
 
         ContextStore.put("contextUser", user);
         petStore.log.new Success("User successfully created");

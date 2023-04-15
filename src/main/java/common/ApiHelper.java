@@ -8,8 +8,6 @@ import okhttp3.RequestBody;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 public abstract class ApiHelper extends ApiUtilities {
     //public Logger logger = LoggerFactory.getLogger(this.getClass());
@@ -26,4 +24,5 @@ public abstract class ApiHelper extends ApiUtilities {
         RequestBody fileBody = RequestBody.create(file, MediaType.parse(mediaType));
         return MultipartBody.Part.createFormData("file", file.getName(), fileBody);
     }
+
 }

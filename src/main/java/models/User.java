@@ -1,8 +1,6 @@
 package models;
 
 public class User {
-
-
     String username;
     String firstname;
     String lastname;
@@ -10,7 +8,6 @@ public class User {
     String password;
     String phone;
     int userStatus;
-
     long  id;
 
     public long getId() {

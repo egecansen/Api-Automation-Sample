@@ -1,6 +1,10 @@
 package common;
 
 import api_assured.ApiUtilities;
+import gpt.api.GPT;
+import gpt.utilities.DataGenerator;
+import models.Pet;
+import models.User;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -15,6 +19,17 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class PetUtilities extends ApiUtilities {
+
+    GPT gpt = new GPT("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");
+
+    public Pet getRandomPet() {
+        DataGenerator generator = new DataGenerator(gpt);
+        return generator.instantiate(Pet.class, "id");
+    }
+    public User getRandomUser() {
+        DataGenerator generator = new DataGenerator(gpt);
+        return generator.instantiate(User.class);
+    }
 
     public List<String> categories = List.of(
             "Donkey",
@@ -60,4 +75,5 @@ public class PetUtilities extends ApiUtilities {
         RequestBody fileBody = RequestBody.create(file, MediaType.parse(mediaType));
         return MultipartBody.Part.createFormData("file", file.getName(), fileBody);
     }
+
 }
