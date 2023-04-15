@@ -10,6 +10,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import petstore.PetStoreServices;
 import retrofit2.Call;
+import utils.PropertiesReader;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +20,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class PetUtilities extends ApiUtilities {
-
-    GPT gpt = new GPT("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");
+    PropertiesReader props = new PropertiesReader("test.properties");
+    GPT gpt = new GPT(props.getProperty("gpt-token"));
 
     public Pet getRandomPet() {
         DataGenerator generator = new DataGenerator(gpt);

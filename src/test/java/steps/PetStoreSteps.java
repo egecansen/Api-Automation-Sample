@@ -67,10 +67,10 @@ public class PetStoreSteps {
 
  @Given("Generate a random GPT pet")
     public void postGPTPet() {
-        Pet newPet = petUtilities.getRandomPet();
-        Response<Pet> petResponse = petStore.postPet(newPet);
+        Pet pet = petUtilities.getRandomPet();
+        Response<Pet> petResponse = petStore.postPet(pet);
         ReflectionUtilities reflectionUtilities = new ReflectionUtilities();
-        reflectionUtilities.compareObjects(newPet, petResponse.body(), "id");
+        reflectionUtilities.objectsMatch(pet, petResponse.body(), "id");
     }
 
     @Given("Randomly update the pet named: {}")
