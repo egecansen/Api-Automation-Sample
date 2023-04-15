@@ -32,20 +32,12 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Umutayb/Utilities -->
-    <dependency>
-      <groupId>io.github.umutayb</groupId>
-      <artifactId>Utilities</artifactId>
-      <version>1.4.2</version>
-    </dependency>
-
     <!-- umutayb/gpt-utilities -->
     <dependency>
       <groupId>io.github.umutayb</groupId>
       <artifactId>gpt-utilities</artifactId>
-      <version>0.0.6</version>
+      <version>0.0.7</version>
     </dependency>
-
 
     <!-- retrofit2 -->
     <dependency>

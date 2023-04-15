@@ -8,8 +8,6 @@ import models.User;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import petstore.PetStoreServices;
-import retrofit2.Call;
 import utils.PropertiesReader;
 
 import java.io.File;
@@ -18,17 +16,16 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-
 public class PetUtilities extends ApiUtilities {
+
     PropertiesReader props = new PropertiesReader("test.properties");
     GPT gpt = new GPT(props.getProperty("gpt-token"));
+    DataGenerator generator = new DataGenerator(gpt);
 
     public Pet getRandomPet() {
-        DataGenerator generator = new DataGenerator(gpt);
         return generator.instantiate(Pet.class, "id");
     }
     public User getRandomUser() {
-        DataGenerator generator = new DataGenerator(gpt);
         return generator.instantiate(User.class);
     }
 
@@ -73,7 +70,7 @@ public class PetUtilities extends ApiUtilities {
         try {mediaType = Files.probeContentType(file.toPath());}
         catch (IOException e) {throw new RuntimeException(e);}
 
-        RequestBody fileBody = RequestBody.create(file, MediaType.parse(mediaType));
+        RequestBody fileBody = RequestBody.create(MediaType.parse(mediaType), file);
         return MultipartBody.Part.createFormData("file", file.getName(), fileBody);
     }
 

@@ -3,9 +3,6 @@ Feature: PetStore
   Scenario: Post GPT pet
     * Generate a random GPT pet
 
-  Scenario: Post GPT user
-    * Generate random GPT user
-
   Scenario: Post a new pet
     * Post a new random pet named fluffer
 
